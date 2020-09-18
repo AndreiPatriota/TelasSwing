@@ -6,7 +6,10 @@ import principal.Main;
 
 public class JFrPrincipal extends javax.swing.JFrame 
 {
-    private JFrTela1 pnTela1= null;
+    private JFrTela1 pnTela1 = null;
+    private JFrTela2 pnTela2 = null;
+    private JFrTela3 pnTela3 = null;
+    private JFrTela4 pnTela4 = null;
     
     public JFrPrincipal() 
     {
@@ -21,11 +24,11 @@ public class JFrPrincipal extends javax.swing.JFrame
 
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnTela1 = new javax.swing.JButton();
+        btnTela2 = new javax.swing.JButton();
+        btnTela3 = new javax.swing.JButton();
+        btnTela4 = new javax.swing.JButton();
+        btnSAIR = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -33,28 +36,43 @@ public class JFrPrincipal extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 0));
-        jButton1.setText("Tela1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTela1.setBackground(new java.awt.Color(255, 102, 0));
+        btnTela1.setText("Tela1");
+        btnTela1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTela1ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 0));
-        jButton2.setText("Tela2");
-
-        jButton3.setBackground(new java.awt.Color(255, 102, 0));
-        jButton3.setText("Tela3");
-
-        jButton4.setBackground(new java.awt.Color(255, 102, 0));
-        jButton4.setText("Tela4");
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setText("SAIR");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnTela2.setBackground(new java.awt.Color(255, 102, 0));
+        btnTela2.setText("Tela2");
+        btnTela2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnTela2ActionPerformed(evt);
+            }
+        });
+
+        btnTela3.setBackground(new java.awt.Color(255, 102, 0));
+        btnTela3.setText("Tela3");
+        btnTela3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTela3ActionPerformed(evt);
+            }
+        });
+
+        btnTela4.setBackground(new java.awt.Color(255, 102, 0));
+        btnTela4.setText("Tela4");
+        btnTela4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTela4ActionPerformed(evt);
+            }
+        });
+
+        btnSAIR.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSAIR.setText("SAIR");
+        btnSAIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSAIRActionPerformed(evt);
             }
         });
 
@@ -65,18 +83,18 @@ public class JFrPrincipal extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTela3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTela4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTela1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTela2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnSAIR)
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,14 +102,14 @@ public class JFrPrincipal extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTela1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTela2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTela3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTela4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnSAIR)
                 .addGap(19, 19, 19))
         );
 
@@ -109,39 +127,46 @@ public class JFrPrincipal extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnSAIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSAIRActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnSAIRActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnTela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTela1ActionPerformed
         pnTela1 = new JFrTela1();
-        //pnTela1.setIconImage(this.getImage("images/logo-br.gif"));
-        pnTela1.setTitle("TELA1");
-        //pnEmed.setLocation((telaOffset*Main.dimTelaH)/num_telas+(Main.dimTelaH/num_telas - pnEmed.getWidth())/2,
-        //       (Main.dimTelaV - pnEmed.getHeight())/3); 
-        pnTela1.addWindowListener(new WindowAdapter() 
-                                    {
-                                        @Override
-                                        public void windowClosed(WindowEvent e)
-                                        {
-                                            super.windowClosed(e);
-                                            Main.app.setVisible(true);
-                                        }
-                                    });
         
-                
         this.setVisible(false);
         pnTela1.setVisible(true);  
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnTela1ActionPerformed
+
+    private void btnTela2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTela2ActionPerformed
+        pnTela2 = new JFrTela2();
+                
+        this.setVisible(false);
+        pnTela2.setVisible(true);
+    }//GEN-LAST:event_btnTela2ActionPerformed
+
+    private void btnTela3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTela3ActionPerformed
+        pnTela3 = new JFrTela3();
+                
+        this.setVisible(false);
+        pnTela3.setVisible(true);
+    }//GEN-LAST:event_btnTela3ActionPerformed
+
+    private void btnTela4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTela4ActionPerformed
+        pnTela4 = new JFrTela4();
+                
+        //this.setVisible(false);
+        pnTela4.setVisible(true);
+    }//GEN-LAST:event_btnTela4ActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnSAIR;
+    private javax.swing.JButton btnTela1;
+    private javax.swing.JButton btnTela2;
+    private javax.swing.JButton btnTela3;
+    private javax.swing.JButton btnTela4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

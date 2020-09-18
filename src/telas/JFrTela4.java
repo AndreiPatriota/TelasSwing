@@ -4,28 +4,29 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import principal.Main;
 
-public class JFrTela1 extends javax.swing.JFrame 
+public class JFrTela4 extends javax.swing.JFrame 
 {
 
-    public JFrTela1() 
+    public JFrTela4() 
     {
         initComponents();
         
-        setTitle("TELA1");
         //setIconImage(this.getImage("images/logo-br.gif"));
+        setTitle("TELA4");
         //setLocation((telaOffset*Main.dimTelaH)/num_telas+(Main.dimTelaH/num_telas - pnEmed.getWidth())/2,
         //       (Main.dimTelaV - pnEmed.getHeight())/3); 
         addWindowListener(new WindowAdapter() 
-                                    {
-                                        @Override
-                                        public void windowClosed(WindowEvent e)
-                                        {
-                                            super.windowClosed(e);
-                                            Main.app.setVisible(true);
-                                        }
-                                    });
+                        {
+                            @Override
+                            public void windowClosed(WindowEvent e)
+                            {
+                                super.windowClosed(e);
+                                Main.app.setVisible(true);
+                            }
+                        });
         
-                
+        setAlwaysOnTop(true);
+        requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +43,7 @@ public class JFrTela1 extends javax.swing.JFrame
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel1.setText("MINHA TELA 1");
+        jLabel1.setText("MINHA TELA 4");
         jLabel1.setToolTipText("");
 
         btnVoltar.setForeground(new java.awt.Color(255, 51, 0));
