@@ -1,7 +1,12 @@
 package telas;
 
-public class JFrPrincipal extends javax.swing.JFrame {
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import principal.Main;
 
+public class JFrPrincipal extends javax.swing.JFrame 
+{
+    private JFrTela1 pnTela1= null;
     
     public JFrPrincipal() 
     {
@@ -30,6 +35,11 @@ public class JFrPrincipal extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 102, 0));
         jButton1.setText("Tela1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 102, 0));
         jButton2.setText("Tela2");
@@ -102,6 +112,27 @@ public class JFrPrincipal extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pnTela1 = new JFrTela1();
+        //pnTela1.setIconImage(this.getImage("images/logo-br.gif"));
+        pnTela1.setTitle("TELA1");
+        //pnEmed.setLocation((telaOffset*Main.dimTelaH)/num_telas+(Main.dimTelaH/num_telas - pnEmed.getWidth())/2,
+        //       (Main.dimTelaV - pnEmed.getHeight())/3); 
+        pnTela1.addWindowListener(new WindowAdapter() 
+                                    {
+                                        @Override
+                                        public void windowClosed(WindowEvent e)
+                                        {
+                                            super.windowClosed(e);
+                                            Main.app.setVisible(true);
+                                        }
+                                    });
+        
+                
+        this.setVisible(false);
+        pnTela1.setVisible(true);  
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

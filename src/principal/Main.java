@@ -4,8 +4,10 @@ import telas.JFrPrincipal;
 
 public class Main 
 {   
+    public static JFrPrincipal app = null;
+    
     public static void main(String[] args)
     {
-        JFrPrincipal app = new JFrPrincipal();
+        app = new JFrPrincipal();
     }
 }
