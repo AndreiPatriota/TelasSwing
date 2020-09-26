@@ -2,6 +2,11 @@ package telas;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import principal.Main;
 
 public class JFrPrincipal extends javax.swing.JFrame 
@@ -29,6 +34,7 @@ public class JFrPrincipal extends javax.swing.JFrame
         btnTela3 = new javax.swing.JButton();
         btnTela4 = new javax.swing.JButton();
         btnSAIR = new javax.swing.JButton();
+        btnConectar = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -76,6 +82,14 @@ public class JFrPrincipal extends javax.swing.JFrame
             }
         });
 
+        btnConectar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnConectar.setText("CONECTAR");
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConectarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,7 +107,9 @@ public class JFrPrincipal extends javax.swing.JFrame
                 .addComponent(btnTela2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(btnConectar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSAIR)
                 .addGap(19, 19, 19))
         );
@@ -109,7 +125,9 @@ public class JFrPrincipal extends javax.swing.JFrame
                 .addGap(47, 47, 47)
                 .addComponent(btnTela4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnSAIR)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSAIR)
+                    .addComponent(btnConectar))
                 .addGap(19, 19, 19))
         );
 
@@ -159,8 +177,27 @@ public class JFrPrincipal extends javax.swing.JFrame
         pnTela4.setVisible(true);
     }//GEN-LAST:event_btnTela4ActionPerformed
 
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        String url = "jdbc:sqlite:src/principal/crud.s3db";
+        
+        try 
+        {
+            Main.con = DriverManager.getConnection(url); 
+            JOptionPane.showMessageDialog(this, "Tudo certo", "conecção estabelecida.", WIDTH);
+       
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(JFrPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+       
+        
+    }//GEN-LAST:event_btnConectarActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConectar;
     private javax.swing.JButton btnSAIR;
     private javax.swing.JButton btnTela1;
     private javax.swing.JButton btnTela2;
