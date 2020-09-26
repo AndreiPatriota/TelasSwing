@@ -20,6 +20,9 @@ public class JFrPrincipal extends javax.swing.JFrame
     {
         initComponents();
         this.setVisible(true);
+        
+        connectToDb();
+        
     }
 
     
@@ -34,7 +37,7 @@ public class JFrPrincipal extends javax.swing.JFrame
         btnTela3 = new javax.swing.JButton();
         btnTela4 = new javax.swing.JButton();
         btnSAIR = new javax.swing.JButton();
-        btnConectar = new javax.swing.JButton();
+        btnConnect = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -82,11 +85,11 @@ public class JFrPrincipal extends javax.swing.JFrame
             }
         });
 
-        btnConectar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnConectar.setText("CONECTAR");
-        btnConectar.addActionListener(new java.awt.event.ActionListener() {
+        btnConnect.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnConnect.setText("CONECTAR");
+        btnConnect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConectarActionPerformed(evt);
+                btnConnectActionPerformed(evt);
             }
         });
 
@@ -108,7 +111,7 @@ public class JFrPrincipal extends javax.swing.JFrame
                 .addGap(62, 62, 62))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnConectar)
+                .addComponent(btnConnect)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSAIR)
                 .addGap(19, 19, 19))
@@ -127,7 +130,7 @@ public class JFrPrincipal extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSAIR)
-                    .addComponent(btnConectar))
+                    .addComponent(btnConnect))
                 .addGap(19, 19, 19))
         );
 
@@ -177,27 +180,38 @@ public class JFrPrincipal extends javax.swing.JFrame
         pnTela4.setVisible(true);
     }//GEN-LAST:event_btnTela4ActionPerformed
 
-    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+    private void connectToDb()
+    {
         String url = "jdbc:sqlite:src/principal/crud.s3db";
         
         try 
         {
-            Main.con = DriverManager.getConnection(url); 
+            Main.conn = DriverManager.getConnection(url); 
             JOptionPane.showMessageDialog(this, "Tudo certo", "conecção estabelecida.", WIDTH);
-       
+            Main.isConnected = true;
         } 
         catch (SQLException ex) {
-            Logger.getLogger(JFrPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Could not connect to DataBase", "Connection Error!!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
+    private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
+        if(!Main.isConnected)
+        {
+            connectToDb();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Date Base already communicating", "All set!!", JOptionPane.PLAIN_MESSAGE);
         }
         
-        
-       
-        
-    }//GEN-LAST:event_btnConectarActionPerformed
+          
+    }//GEN-LAST:event_btnConnectActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConectar;
+    private javax.swing.JButton btnConnect;
     private javax.swing.JButton btnSAIR;
     private javax.swing.JButton btnTela1;
     private javax.swing.JButton btnTela2;
