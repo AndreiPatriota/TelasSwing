@@ -11,10 +11,10 @@ import principal.Main;
 
 public class JFrPrincipal extends javax.swing.JFrame 
 {
-    private JFrTela1 pnTela1 = null;
-    private JFrTela2 pnTela2 = null;
-    private JFrTela3 pnTela3 = null;
-    private JFrTela4 pnTela4 = null;
+    public JFrTela1 pnTela1 = null;
+    public JFrTela2 pnTela2 = null;
+    public JFrTela3 pnTela3 = null;
+    public JFrTela4 pnTela4 = null;
     
     public JFrPrincipal() 
     {
@@ -180,6 +180,7 @@ public class JFrPrincipal extends javax.swing.JFrame
         pnTela4.setVisible(true);
     }//GEN-LAST:event_btnTela4ActionPerformed
 
+    
     private void connectToDb()
     {
         String url = "jdbc:sqlite:src/principal/crud.s3db";

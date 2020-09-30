@@ -50,6 +50,32 @@ public class Pessoa
     }
     
     
+    public static ArrayList<Pessoa> buscaPessoaBd(Connection conn, JFrame jframe, String qry_filter)
+    {
+        String qry = "SELECT * FROM pessoas_nova WHERE " + qry_filter;
+        ArrayList<Pessoa> vct_pessoas = new ArrayList<Pessoa>();
+        
+        try(Statement stmt = conn.createStatement())
+        {
+            ResultSet myrs = stmt.executeQuery(qry);
+            
+            while(myrs.next())
+            {
+                vct_pessoas.add(new Pessoa(myrs.getString("nome"),
+                                    myrs.getDate("data_milis"),
+                                    myrs.getBoolean("sexo"),
+                                    myrs.getFloat("peso"),
+                                    myrs.getFloat("altura")));
+            }
+        }
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(jframe, "Não foi possível obter os dados da tabela", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return vct_pessoas;
+    }
+    
     public void salvaPessoaBd(Connection conn)
     {   
         String qry_create_tbl = "CREATE TABLE IF NOT EXISTS pessoas_nova (\n"
@@ -107,7 +133,6 @@ public class Pessoa
     }
     
     
-
     public String getNome() {
         return nome;
     }

@@ -11,6 +11,7 @@ public class JFrTela3 extends javax.swing.JFrame
 {
     
     private DefaultTableModel tblmod = null;
+    public JFrFetch pnFetch = null;
 
     public JFrTela3() 
     {
@@ -36,7 +37,8 @@ public class JFrTela3 extends javax.swing.JFrame
         
         if(Main.isConnected)
         {
-            updateTable();
+            ArrayList<Pessoa> lstPessoas = Pessoa.buscaPessoaBd(Main.conn, this);
+            updateTable(lstPessoas);
         }
      
     }
@@ -50,13 +52,14 @@ public class JFrTela3 extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPessoas = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
+        btnFetch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         btnBack.setForeground(new java.awt.Color(255, 51, 0));
-        btnBack.setText("VOLTAR");
+        btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -89,10 +92,18 @@ public class JFrTela3 extends javax.swing.JFrame
         jScrollPane1.setViewportView(tblPessoas);
 
         btnRefresh.setForeground(new java.awt.Color(255, 51, 0));
-        btnRefresh.setText("ATUALIZAR");
+        btnRefresh.setText("REFRESH");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
+            }
+        });
+
+        btnFetch.setForeground(new java.awt.Color(255, 51, 0));
+        btnFetch.setText("FETCH");
+        btnFetch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFetchActionPerformed(evt);
             }
         });
 
@@ -104,16 +115,23 @@ public class JFrTela3 extends javax.swing.JFrame
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRefresh)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFetch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFetch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRefresh)
                         .addGap(3, 3, 3)
                         .addComponent(btnBack))
@@ -141,13 +159,12 @@ public class JFrTela3 extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
     
-    private void updateTable()
+    public void updateTable(ArrayList<Pessoa> lstPessoas)
     {
-        ArrayList<Pessoa> vct = Pessoa.buscaPessoaBd(Main.conn, this);
         Object[] objs = new Object[5];
         tblmod.setRowCount(0);
         
-        for(Pessoa umaPessoa : vct)
+        for(Pessoa umaPessoa : lstPessoas)
         {
             objs[0] = umaPessoa.getNome();
             objs[1] = umaPessoa.getData_nasc();
@@ -160,13 +177,37 @@ public class JFrTela3 extends javax.swing.JFrame
     }
     
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        updateTable();
+        ArrayList<Pessoa> lstPessoas = Pessoa.buscaPessoaBd(Main.conn, this);
+        
+        updateTable(lstPessoas);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
+        pnFetch = new JFrFetch();
+                
+        //this.setVisible(false);
+        blockBtn();
+        pnFetch.setVisible(true);
+    }//GEN-LAST:event_btnFetchActionPerformed
+
     
+    public void blockBtn()
+    {
+        btnRefresh.setEnabled(false);
+        btnFetch.setEnabled(false);
+        btnBack.setEnabled(false);
+    }
+    
+    public void unBlockBtn()
+    {
+        btnRefresh.setEnabled(true);
+        btnFetch.setEnabled(true);
+        btnBack.setEnabled(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
