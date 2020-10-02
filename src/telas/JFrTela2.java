@@ -1,9 +1,8 @@
 package telas;
 
-import MinhasClasses.Pessoa;
+import MinhasClasses.Person;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Calendar;
 import java.util.Date;
 import principal.Main;
 
@@ -130,14 +129,14 @@ public class JFrTela2 extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnSALVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALVARActionPerformed
-        Pessoa umaPessoa = new Pessoa(txtNome.getText(),
+        Person onePerson = new Person(txtNome.getText(),
                                     (Date) spnData.getValue(),
                                     rdioFem.isSelected(),
                                     Float.parseFloat(txtPeso.getText()),
                                     Float.parseFloat(txtAltura.getText()));
 
-        System.out.println(umaPessoa);
-        umaPessoa.salvaPessoaBd(Main.conn);
+        System.out.println(onePerson);
+        onePerson.savePersonBd(Main.conn);
     }//GEN-LAST:event_btnSALVARActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

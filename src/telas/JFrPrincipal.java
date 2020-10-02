@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import principal.Main;
 
 public class JFrPrincipal extends javax.swing.JFrame 
@@ -20,6 +21,7 @@ public class JFrPrincipal extends javax.swing.JFrame
     {
         initComponents();
         this.setVisible(true);
+        this.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         
         connectToDb();
         

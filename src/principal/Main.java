@@ -1,7 +1,6 @@
 package principal;
 
 import telas.JFrPrincipal;
-import MinhasClasses.Pessoa;
 import java.sql.Connection;
 import java.util.ArrayList;
 

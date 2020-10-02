@@ -1,9 +1,10 @@
 package telas;
 
-import MinhasClasses.Pessoa;
+import MinhasClasses.Person;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
 import principal.Main;
 
@@ -19,6 +20,7 @@ public class JFrTela3 extends javax.swing.JFrame
         
         //setIconImage(this.getImage("images/logo-br.gif"));
         setTitle("TELA3");
+        this.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         //setLocation((telaOffset*Main.dimTelaH)/num_telas+(Main.dimTelaH/num_telas - pnEmed.getWidth())/2,
         //       (Main.dimTelaV - pnEmed.getHeight())/3); 
         addWindowListener(new WindowAdapter() 
@@ -31,14 +33,14 @@ public class JFrTela3 extends javax.swing.JFrame
                             }
                         });
         
-        tblmod = (DefaultTableModel) tblPessoas.getModel();
+        tblmod = (DefaultTableModel) tblPeople.getModel();
         
         btnRefresh.setEnabled(Main.isConnected);
         
         if(Main.isConnected)
         {
-            ArrayList<Pessoa> lstPessoas = Pessoa.buscaPessoaBd(Main.conn, this);
-            updateTable(lstPessoas);
+            ArrayList<Person> lstPeople = Person.fetchPersonBd(Main.conn, this);
+            updateTable(lstPeople);
         }
      
     }
@@ -50,7 +52,7 @@ public class JFrTela3 extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPessoas = new javax.swing.JTable();
+        tblPeople = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
         btnFetch = new javax.swing.JButton();
 
@@ -66,7 +68,7 @@ public class JFrTela3 extends javax.swing.JFrame
             }
         });
 
-        tblPessoas.setModel(new javax.swing.table.DefaultTableModel(
+        tblPeople.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -89,7 +91,7 @@ public class JFrTela3 extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblPessoas);
+        jScrollPane1.setViewportView(tblPeople);
 
         btnRefresh.setForeground(new java.awt.Color(255, 51, 0));
         btnRefresh.setText("REFRESH");
@@ -159,27 +161,27 @@ public class JFrTela3 extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
     
-    public void updateTable(ArrayList<Pessoa> lstPessoas)
+    public void updateTable(ArrayList<Person> lstPeople)
     {
         Object[] objs = new Object[5];
         tblmod.setRowCount(0);
         
-        for(Pessoa umaPessoa : lstPessoas)
+        for(Person onePerson : lstPeople)
         {
-            objs[0] = umaPessoa.getNome();
-            objs[1] = umaPessoa.getData_nasc();
-            objs[2] = umaPessoa.getSexo()?"F":"M";
-            objs[3] = umaPessoa.getPeso();
-            objs[4] = umaPessoa.getAltura();
+            objs[0] = onePerson.getName();
+            objs[1] = onePerson.getBirthdayDate();
+            objs[2] = onePerson.getSex()?"F":"M";
+            objs[3] = onePerson.getWieght();
+            objs[4] = onePerson.getHieght();
             
             tblmod.addRow(objs);
         } 
     }
     
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        ArrayList<Pessoa> lstPessoas = Pessoa.buscaPessoaBd(Main.conn, this);
+        ArrayList<Person> lstPeople = Person.fetchPersonBd(Main.conn, this);
         
-        updateTable(lstPessoas);
+        updateTable(lstPeople);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
@@ -211,6 +213,6 @@ public class JFrTela3 extends javax.swing.JFrame
     private javax.swing.JButton btnRefresh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblPessoas;
+    private javax.swing.JTable tblPeople;
     // End of variables declaration//GEN-END:variables
 }
