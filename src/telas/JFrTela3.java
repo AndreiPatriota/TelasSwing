@@ -4,6 +4,9 @@ import MinhasClasses.Person;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
 import principal.Main;
@@ -163,25 +166,25 @@ public class JFrTela3 extends javax.swing.JFrame
     
     public void updateTable(ArrayList<Person> lstPeople)
     {
-        Object[] objs = new Object[5];
         tblmod.setRowCount(0);
-        
-        for(Person onePerson : lstPeople)
-        {
-            objs[0] = onePerson.getName();
-            objs[1] = onePerson.getBirthdayDate();
-            objs[2] = onePerson.getSex()?"F":"M";
-            objs[3] = onePerson.getWieght();
-            objs[4] = onePerson.getHieght();
-            
-            tblmod.addRow(objs);
-        } 
+         
+        lstPeople.stream()
+                    .map(p -> new Object[] {p.getName(), 
+                                                                p.getBirthdayDate(),
+                                                                p.getSex(),
+                                                                p.getWieght(),
+                                                                p.getHieght()})
+                    .forEach(o -> tblmod.addRow(o));
+
     }
     
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        ArrayList<Person> lstPeople = Person.fetchPersonBd(Main.conn, this);
         
-        updateTable(lstPeople);
+        Supplier<ArrayList<Person>> s1 = () -> Person.fetchPersonBd(Main.conn, this);
+        Consumer<ArrayList<Person>> c1 = oneList -> updateTable(oneList);
+        
+        c1.accept(s1.get());
+        
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed

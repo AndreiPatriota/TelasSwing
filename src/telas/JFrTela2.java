@@ -4,6 +4,8 @@ import MinhasClasses.Person;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 import principal.Main;
 
 public class JFrTela2 extends javax.swing.JFrame 
@@ -129,14 +131,20 @@ public class JFrTela2 extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnSALVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALVARActionPerformed
-        Person onePerson = new Person(txtNome.getText(),
-                                    (Date) spnData.getValue(),
-                                    rdioFem.isSelected(),
-                                    Float.parseFloat(txtPeso.getText()),
-                                    Float.parseFloat(txtAltura.getText()));
+       
+        Supplier<Person> s1 = () -> new Person(txtNome.getText(),
+                                                (Date) spnData.getValue(),
+                                                rdioFem.isSelected(),
+                                                Float.parseFloat(txtPeso.getText()),
+                                                Float.parseFloat(txtAltura.getText()));
+        
+        Consumer<Person> c1 = p -> {System.out.println(p);
+                                    p.savePersonBd(Main.conn);  };
 
-        System.out.println(onePerson);
-        onePerson.savePersonBd(Main.conn);
+        
+        c1.accept(s1.get());
+
+        
     }//GEN-LAST:event_btnSALVARActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
